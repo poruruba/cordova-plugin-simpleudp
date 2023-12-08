@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-simpleudp" version="0.0.1">
+    <name>SampleUdp</name>
+    <js-module src="www/plugin_simpleudp.js" name="simpleudp">
+        <clobbers target="simpleudp" />
+    </js-module>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SimpleUdp" >
+                <param name="android-package" value="jp.or.sample.plugin.SimpleUdp.Main"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+        <source-file src="src/android/jp/or/sample/plugin/SimpleUdp/Main.java" target-dir="src/jp/or/sample/plugin/SimpleUdp" />
+    </platform>
+    <platform name="ios">
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+        <config-file target="config.xml" parent="/*">
+            <feature name="SimpleUdp" >
+                <param name="ios-package" value="SimpleUdpPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/SimpleUdpPlugin.swift" target-dir="src/ios" />
+    </platform>
+</plugin>
